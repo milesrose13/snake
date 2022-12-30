@@ -66,10 +66,10 @@ def move(game_state: typing.Dict) -> typing.Dict:
      board_width = game_state['board']['width']
      board_height = game_state['board']['height']
      
-     if my_head["y"] == board_height:
+     if my_head["y"] == board_height-1:
         is_move_safe["up"] = False
         
-     elif my_head["y"] == 0: 
+     elif my_head["y"] == 1: 
         is_move_safe["down"] = False
         
      elif my_head["x"] == board_width:
@@ -121,13 +121,13 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
      food = game_state['board']['food']
-     if is_move_safe["up"] && food["y"] > my_head["y"]:
+     if is_move_safe["up"] == True && food["y"] > my_head["y"]:
         next_move = "up"
-     elif is_move_safe["down"] && food["y"] < my_head["y"]:
+     elif is_move_safe["down"] == True && food["y"] < my_head["y"]:
         next_move = "down"
-     if is_move_safe["right"] && food["x"] > my_head["x"]:
+     if is_move_safe["right"] == True && food["x"] > my_head["x"]:
         next_move = "right"
-     elif is_move_safe["left"] && food["x"] < my_head["x"]:
+     elif is_move_safe["left"] == True && food["x"] < my_head["x"]:
         next_move = "left"
 
     print(f"MOVE {game_state['turn']}: {next_move}")
